@@ -1,5 +1,4 @@
 from django.db import models
-#from application_generation.models import Application
 
 class Loan(models.Model):
     LOAN_STATUS_CHOICE = [

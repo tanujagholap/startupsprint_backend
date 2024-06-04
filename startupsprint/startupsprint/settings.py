@@ -52,10 +52,13 @@ INSTALLED_APPS = [
     'customer',
     'disburstment',
     'feedback_and_queries',
-    'loan_sanctioning'
+    'loan_sanctioning',
+    'emi'
 ]
 
 AUTH_USER_MODEL = "accounts.User"
+
+CORS_ALLOW_ALL_ORIGINS = True 
 
 CORS_ORIGIN_WHITELIST = [ 
 
