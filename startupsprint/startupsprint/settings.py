@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'customer',
     'disburstment',
     'feedback_and_queries',
-    'loan_sanctioning'
+    'loan_sanctioning',
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 AUTH_USER_MODEL = "accounts.User"
@@ -146,6 +148,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATICFILES_DIRS =['static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -153,3 +156,28 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+#email configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ravilabade111@gmail.com'  # Replace with your email address
+EMAIL_HOST_PASSWORD = 'prog vqfu wdnz zxjz'
+DEFAULT_FROM_EMAIL = 'your_email@example.com'
+
+
+#image upload
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+#celery configuartion
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
