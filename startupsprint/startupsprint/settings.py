@@ -34,6 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,6 +55,15 @@ INSTALLED_APPS = [
     'feedback_and_queries',
     'loan_sanctioning'
 ]
+
+
+
+
+TWILIO_ACCOUNT_SID = 'ACdee2624cb69f8c00bb121e26001bf6f3'
+TWILIO_AUTH_TOKEN  = '838b3f6a712b1c0da0cfd0fe06914e02'
+TWILIO_VERIFY_SID = "VA22029f46344cc8f556737347ad9e6159"
+
+
 
 AUTH_USER_MODEL = "accounts.User"
 
