@@ -60,7 +60,7 @@ AUTH_USER_MODEL = "accounts.User"
 CORS_ORIGIN_WHITELIST = [ 
 
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:8000"
 ]
 
 MIDDLEWARE = [
@@ -91,6 +91,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+TWILIO_ACCOUNT_SID = 'ACe9bce4f06bfd12cd0910fa7950aa80d1'
+TWILIO_AUTH_TOKEN = 'd3c90d463d64cf38f47fd9b3fff303a2'
+TWILIO_PHONE_NUMBER = '+12254257848'  # Replace with your Twilio phone number
+TWILIO_VERIFY_SID = 'VA71f629acdcf5d9b86ea908d868d95cbc'
 
 WSGI_APPLICATION = 'startupsprint.wsgi.application'
 
@@ -151,5 +157,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
