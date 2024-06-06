@@ -93,8 +93,6 @@ TEMPLATES = [
 ]
 
 
-
-
 WSGI_APPLICATION = 'startupsprint.wsgi.application'
 
 
