@@ -36,8 +36,53 @@ class Family(models.Model):
     spouse_name = models.CharField(max_length=30, default='', blank=True)
     spouse_income = models.FloatField(default=0.0, blank=True)
     spouse_profession= models.CharField(max_length=30, blank=True, default='')
-    spouse_contact = PhoneNumberField (region='IN', blank=True, null=True)
+    spouse_contact = PhoneNumberField(region='IN', blank=True, null=True)
     
+    def clean(self):
+        # Validation for father_name
+        if self.father_name and len(self.father_name.strip()) < 3:
+            raise ValidationError({'father_name': 'Father name must be at least 3 characters long.'})
+
+        
+        if self.father_profession and len(self.father_profession.strip()) < 3:
+            raise ValidationError({'father_profession': 'Father profession must be at least 3 characters long.'})
+
+    
+        if self.father_income < 0:
+            raise ValidationError({'father_income': 'Father income cannot be negative.'})
+
+        
+
+        if self.mother_name and len(self.mother_name.strip()) < 3:
+            raise ValidationError({'mother_name': 'Mother name must be at least 3 characters long.'})
+
+        
+        if self.mother_profession and len(self.mother_profession.strip()) < 3:
+            raise ValidationError({'mother_profession': 'Mother profession must be at least 3 characters long.'})
+
+    
+        if self.mother_income < 0:
+            raise ValidationError({'mother_income': 'Mother income cannot be negative.'})
+
+
+        
+        if self.marital_status == 'married' and not self.spouse_name:
+            raise ValidationError({'spouse_name': 'Spouse name is required if marital status is married.'})
+        if self.marital_status != 'married' and self.spouse_name:
+            raise ValidationError({'spouse_name': 'Spouse name should be empty if marital status is not married.'})
+
+        
+        if self.marital_status == 'married':
+            if not self.spouse_profession:
+                raise ValidationError({'spouse_profession': 'Spouse profession is required if marital status is married.'})
+            if self.spouse_income <= 0:
+                raise ValidationError({'spouse_income': 'Spouse income must be greater than 0 if marital status is married.'})
+
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  
+        super().save(*args, **kwargs)
+
 
 class Bank(models.Model):
 

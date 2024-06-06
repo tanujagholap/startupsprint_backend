@@ -20,6 +20,7 @@ class Loan(models.Model):
     response_timestamp = models.DateTimeField(auto_now=True, blank=True)
     remark = models.CharField(max_length=250, default=0, blank=True)
     
+    
     def str (self):
         return f'{self.id}'
 

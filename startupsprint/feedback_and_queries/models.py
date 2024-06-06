@@ -2,10 +2,12 @@ from django.db import models
 
 
 class FeedBack(models.Model):
+    STAR_CHOICES = [(i, str(i)) for i in range(1, 6)]
+
     first_name = models.CharField(max_length=250) 
     last_name = models.CharField(max_length=250) 
     email = models.EmailField(max_length=50) 
-    ratings = models.FloatField(default=0.0) 
+    ratings = models.FloatField(choices=STAR_CHOICES, default=0.0)
     feedback_text = models.TextField()
 
 

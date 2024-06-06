@@ -41,6 +41,7 @@ class Application(models.Model):
         def __str__(self):
         	return f"{self.id}"
         
+        
 
 class Guarantor(models.Model):
         GENDER_CHOICES = [

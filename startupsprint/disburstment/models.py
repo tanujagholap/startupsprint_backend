@@ -29,7 +29,6 @@ class Installment (models.Model):
     status = models.CharField(max_length=100, blank=True, choices=INSTALLMENT_CHOICES, default='pending')
 
 
-
     def _str_(self):
         return f"{self.id}"
 
@@ -55,6 +54,7 @@ class Disbursement (models.Model):
     receipt_doc = models.FileField(upload_to='customer/disbursement', default=0, blank=True)
     status = models.CharField(max_length=250, default=0, blank=True, choices=DISBURSEMENT_CHOICES) 
     response_timestamp = models.DateTimeField(auto_now=True, blank=True)
+
 
     def _str_(self):
         return f"{self.id}"
